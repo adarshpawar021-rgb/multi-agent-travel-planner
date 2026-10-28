@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Agent Travel Planner – AI-Based Intelligent Trip Planning System</title>
+  <meta name="description" content="AI-based multi-agent intelligent trip planning system for B.Tech CSE Final Year Lab. Demonstrating agent specialization and coordination.">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-compass fa-spin-hover"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Multi-Agent Travel Planner</span>
+          <span class="brand-badge">B.Tech CSE Final Year Mini-Project</span>
+        </div>
+      </div>
+      <nav class="nav-actions">
+        <div class="engine-badge" id="engineStatusBadge" title="Current AI Reasoning Engine">
+          <span class="status-dot online"></span>
+          <span class="engine-text">AI Mode: {{ provider_name }}</span>
+        </div>
+        <a href="#planner-section" class="btn btn-sm btn-primary">Plan My Trip</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-badge">
+          <i class="fa-solid fa-network-wired"></i> Intelligent Multi-Agent Architecture
+        </div>
+        <h1 class="hero-title">Multi-Agent Travel Planner</h1>
+        <p class="hero-subtitle">“Plan your trip with the help of multiple AI agents.”</p>
+        <p class="hero-description">
+          An intelligent autonomous system where specialized AI agents collaborate in real time—researching destinations, balancing day-wise itineraries, calculating categorized expenses against your budget, and assembling customized packing checklists.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#planner-section" class="btn btn-lg btn-primary">
+            <i class="fa-solid fa-plane-departure"></i> Plan My Trip
+          </a>
+          <button type="button" class="btn btn-lg btn-outline" id="loadSampleHeroBtn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Try Sample Trip (Goa)
+          </button>
+        </div>
+
+        <!-- Academic Viva Highlight Bar -->
+        <div class="viva-quick-facts">
+          <div class="viva-fact">
+            <i class="fa-solid fa-users-gear"></i>
+            <div>
+              <strong>5 Specialized Agents</strong>
+              <span>Coordinator, Destination, Itinerary, Budget, Essentials</span>
+            </div>
+          </div>
+          <div class="viva-fact">
+            <i class="fa-solid fa-arrows-split-up-and-left"></i>
+            <div>
+              <strong>Task Decomposition</strong>
+              <span>Sub-problems delegated to purpose-built agents</span>
+            </div>
+          </div>
+          <div class="viva-fact">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <div>
+              <strong>Budget Feasibility</strong>
+              <span>Automatic constraint check & cost-saving suggestions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Cards Section -->
+    <section class="features-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">Autonomous Specialization</span>
+          <h2 class="section-title">Specialized AI Agents Working Together</h2>
+          <p class="section-desc">Each agent handles a distinct sub-domain with clear inputs and structured outputs.</p>
+        </div>
+
+        <div class="feature-grid">
+          <!-- Card 1: Destination -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-destination">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div class="agent-role-pill">Destination Agent</div>
+            <h3 class="feature-card-title">Curated Places</h3>
+            <p class="feature-card-text">
+              Discovers and filters top attractions, hidden gems, and activities tailored to the traveler's specific interests and travel style.
+            </p>
+          </div>
+
+          <!-- Card 2: Itinerary -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-itinerary">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div class="agent-role-pill">Itinerary Agent</div>
+            <h3 class="feature-card-title">Smart Itinerary</h3>
+            <p class="feature-card-text">
+              Schedules recommended spots across days, allocating realistic Morning, Afternoon, and Evening slots without repetition.
+            </p>
+          </div>
+
+          <!-- Card 3: Budget -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-budget">
+              <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div class="agent-role-pill">Budget Agent</div>
+            <h3 class="feature-card-title">Budget Estimation</h3>
+            <p class="feature-card-text">
+              Calculates categorized expenses in INR (Stay, Food, Transit, Activities, Misc), checks budget feasibility, and flags cost-saving tips.
+            </p>
+          </div>
+
+          <!-- Card 4: Checklist -->
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-checklist">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="agent-role-pill">Travel Essentials Agent</div>
+            <h3 class="feature-card-title">Travel Checklist</h3>
+            <p class="feature-card-text">
+              Compiles essential documents, gadgets, climate-specific apparel, medicines, and practical safety tips for smooth journeying.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trip Planning Form Section -->
+    <section class="planner-section" id="planner-section">
+      <div class="section-container">
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="alerts-container">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span>{{ message }}</span>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <div class="form-container-card">
+          <div class="form-header">
+            <div>
+              <span class="section-tag"><i class="fa-solid fa-sliders"></i> Trip Configuration</span>
+              <h2 class="form-title">Enter Travel Requirements</h2>
+              <p class="form-subtitle">Provide your trip preferences to trigger multi-agent task execution.</p>
+            </div>
+            <div class="form-actions-top">
+              <button type="button" class="btn btn-outline btn-sm" id="quickSampleBtn">
+                <i class="fa-solid fa-bolt"></i> Quick Fill: Pune → Goa Demo
+              </button>
+            </div>
+          </div>
+
+          <form id="tripForm" action="{{ url_for('plan_trip_form') }}" method="POST" class="trip-form">
+            
+            <div class="form-row two-cols">
+              <!-- 1. Starting City -->
+              <div class="form-group">
+                <label for="starting_city" class="form-label">
+                  <i class="fa-solid fa-location-crosshairs"></i> Starting City <span class="required">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="starting_city" 
+                  name="starting_city" 
+                  class="form-control" 
+                  placeholder="e.g. Pune, Mumbai, Delhi, Bengaluru" 
+                  required
+                  value="{{ prefill.starting_city if prefill else '' }}"
+                >
+                <span class="field-hint">City you are commencing your journey from</span>
+              </div>
+
+              <!-- 2. Destination -->
+              <div class="form-group">
+                <label for="destination" class="form-label">
+                  <i class="fa-solid fa-location-dot"></i> Destination <span class="required">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="destination" 
+                  name="destination" 
+                  class="form-control" 
+                  placeholder="e.g. Goa, Manali, Jaipur, Kerala" 
+                  required
+                  value="{{ prefill.destination if prefill else '' }}"
+                >
+                <span class="field-hint">Destination city or region to explore</span>
+              </div>
+            </div>
+
+            <div class="form-row three-cols">
+              <!-- 3. Number of Days -->
+              <div class="form-group">
+                <label for="days" class="form-label">
+                  <i class="fa-solid fa-calendar-day"></i> Number of Days <span class="required">*</span>
+                </label>
+                <input 
+                  type="number" 
+                  id="days" 
+                  name="days" 
+                  class="form-control" 
+                  min="1" 
+                  max="30" 
+                  placeholder="e.g. 3" 
+                  required
+                  value="{{ prefill.days if prefill else '3' }}"
+                >
+                <span class="field-hint">Duration (1 to 30 days)</span>
+              </div>
+
+              <!-- 4. Number of Travelers -->
+              <div class="form-group">
+                <label for="travelers" class="form-label">
+                  <i class="fa-solid fa-user-group"></i> Number of Travelers <span class="required">*</span>
+                </label>
+                <input 
+                  type="number" 
+                  id="travelers" 
+                  name="travelers" 
+                  class="form-control" 
+                  min="1" 
+                  max="50" 
+                  placeholder="e.g. 2" 
+                  required
+                  value="{{ prefill.travelers if prefill else '2' }}"
+                >
+                <span class="field-hint">People sharing the journey</span>
+              </div>
+
+              <!-- 5. Total Budget in INR -->
+              <div class="form-group">
+                <label for="budget" class="form-label">
+                  <i class="fa-solid fa-indian-rupee-sign"></i> Total Budget (INR) <span class="required">*</span>
+                </label>
+                <input 
+                  type="number" 
+                  id="budget" 
+                  name="budget" 
+                  class="form-control" 
+                  min="500" 
+                  step="100" 
+                  placeholder="e.g. 10000" 
+                  required
+                  value="{{ prefill.budget if prefill else '10000' }}"
+                >
+                <span class="field-hint" id="budgetFormattedHint">Approx total funds in ₹ INR</span>
+              </div>
+            </div>
+
+            <!-- 6. Travel Style -->
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fa-solid fa-gem"></i> Travel Style <span class="required">*</span>
+              </label>
+              <div class="style-selector-grid">
+                <label class="style-card-label">
+                  <input type="radio" name="travel_style" value="Budget" {% if not prefill or prefill.travel_style == 'Budget' %}checked{% endif %}>
+                  <div class="style-card-content">
+                    <div class="style-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <div class="style-name">Budget</div>
+                    <div class="style-sub">Hostels, local transit, street dining</div>
+                  </div>
+                </label>
+
+                <label class="style-card-label">
+                  <input type="radio" name="travel_style" value="Standard" {% if prefill and prefill.travel_style == 'Standard' %}checked{% endif %}>
+                  <div class="style-card-content">
+                    <div class="style-icon"><i class="fa-solid fa-hotel"></i></div>
+                    <div class="style-name">Standard</div>
+                    <div class="style-sub">Comfort hotels, cabs, popular eateries</div>
+                  </div>
+                </label>
+
+                <label class="style-card-label">
+                  <input type="radio" name="travel_style" value="Premium" {% if prefill and prefill.travel_style == 'Premium' %}checked{% endif %}>
+                  <div class="style-card-content">
+                    <div class="style-icon"><i class="fa-solid fa-crown"></i></div>
+                    <div class="style-name">Premium</div>
+                    <div class="style-sub">Luxury resorts, private cabs, fine dining</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- 7. Interests -->
+            <div class="form-group">
+              <label class="form-label">
+                <i class="fa-solid fa-heart"></i> Traveler Interests <span class="field-hint">(Select at least one)</span>
+              </label>
+              <div class="interests-chips-grid">
+                {% set all_interests = [
+                  ('Nature', 'fa-tree'),
+                  ('Adventure', 'fa-person-hiking'),
+                  ('Beaches', 'fa-umbrella-beach'),
+                  ('History', 'fa-landmark'),
+                  ('Food', 'fa-utensils'),
+                  ('Shopping', 'fa-bag-shopping'),
+                  ('Culture', 'fa-masks-theater')
+                ] %}
+
+                {% for interest, icon in all_interests %}
+                  <label class="interest-chip">
+                    <input 
+                      type="checkbox" 
+                      name="interests" 
+                      value="{{ interest }}"
+                      {% if prefill and interest in prefill.interests %}checked
+                      {% elif not prefill and interest in ['Beaches', 'Food'] %}checked{% endif %}
+                    >
+                    <span class="chip-content">
+                      <i class="fa-solid {{ icon }}"></i> {{ interest }}
+                    </span>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Submit Section -->
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-primary btn-xl" id="generatePlanBtn">
+                <i class="fa-solid fa-arrows-spin"></i> Generate Travel Plan
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Planning Dashboard (Live Agent Execution Visualizer) -->
+        <div class="dashboard-wrapper" id="agentDashboard" style="display: none;">
+          <div class="dashboard-card">
+            <div class="dashboard-header">
+              <div class="dashboard-title-group">
+                <div class="pulse-indicator"></div>
+                <div>
+                  <h3 class="dashboard-title">Multi-Agent Coordination Dashboard</h3>
+                  <p class="dashboard-subtitle">Watch specialized agents execute sub-tasks in real time</p>
+                </div>
+              </div>
+              <div class="dashboard-timer" id="executionTimer">Elapsed: 0.0s</div>
+            </div>
+
+            <div class="agent-workflow-list">
+              <!-- Coordinator Agent: Init -->
+              <div class="agent-step-item" id="step-coordinator-init">
+                <div class="step-indicator">
+                  <div class="step-circle"><i class="fa-solid fa-user-tie"></i></div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <div class="step-header-info">
+                    <h4 class="step-agent-name">Travel Coordinator Agent</h4>
+                    <span class="step-status-badge status-pending" id="badge-coordinator-init">Queued</span>
+                  </div>
+                  <p class="step-desc" id="desc-coordinator-init">Receiving requirements and decomposing into sub-agent goals...</p>
+                </div>
+              </div>
+
+              <!-- Destination Agent -->
+              <div class="agent-step-item" id="step-destination">
+                <div class="step-indicator">
+                  <div class="step-circle"><i class="fa-solid fa-map-location-dot"></i></div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <div class="step-header-info">
+                    <h4 class="step-agent-name">Destination Agent</h4>
+                    <span class="step-status-badge status-pending" id="badge-destination">Waiting</span>
+                  </div>
+                  <p class="step-desc" id="desc-destination">Curating attractions and activities matching interests and travel style...</p>
+                </div>
+              </div>
+
+              <!-- Itinerary Agent -->
+              <div class="agent-step-item" id="step-itinerary">
+                <div class="step-indicator">
+                  <div class="step-circle"><i class="fa-solid fa-calendar-days"></i></div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <div class="step-header-info">
+                    <h4 class="step-agent-name">Itinerary Agent</h4>
+                    <span class="step-status-badge status-pending" id="badge-itinerary">Waiting</span>
+                  </div>
+                  <p class="step-desc" id="desc-itinerary">Scheduling curated spots into Morning, Afternoon, and Evening slots...</p>
+                </div>
+              </div>
+
+              <!-- Budget Agent -->
+              <div class="agent-step-item" id="step-budget">
+                <div class="step-indicator">
+                  <div class="step-circle"><i class="fa-solid fa-wallet"></i></div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <div class="step-header-info">
+                    <h4 class="step-agent-name">Budget Agent</h4>
+                    <span class="step-status-badge status-pending" id="badge-budget">Waiting</span>
+                  </div>
+                  <p class="step-desc" id="desc-budget">Estimating categorized expenses in INR and validating budget feasibility...</p>
+                </div>
+              </div>
+
+              <!-- Essentials Agent -->
+              <div class="agent-step-item" id="step-essentials">
+                <div class="step-indicator">
+                  <div class="step-circle"><i class="fa-solid fa-list-check"></i></div>
+                  <div class="step-line"></div>
+                </div>
+                <div class="step-body">
+                  <div class="step-header-info">
+                    <h4 class="step-agent-name">Travel Essentials Agent</h4>
+                    <span class="step-status-badge status-pending" id="badge-essentials">Waiting</span>
+                  </div>
+                  <p class="step-desc" id="desc-essentials">Compiling packing checklist, travel documents, and destination tips...</p>
+                </div>
+              </div>
+
+              <!-- Coordinator Agent: Finalize -->
+              <div class="agent-step-item" id="step-coordinator-final">
+                <div class="step-indicator">
+                  <div class="step-circle"><i class="fa-solid fa-circle-check"></i></div>
+                </div>
+                <div class="step-body">
+                  <div class="step-header-info">
+                    <h4 class="step-agent-name">Travel Coordinator Agent</h4>
+                    <span class="step-status-badge status-pending" id="badge-coordinator-final">Waiting</span>
+                  </div>
+                  <p class="step-desc" id="desc-coordinator-final">Validating constraints and synthesizing final travel plan...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Multi-Agent Architecture Section (For Viva Explanation) -->
+    <section class="architecture-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag"><i class="fa-solid fa-diagram-project"></i> Project Architecture</span>
+          <h2 class="section-title">How the Multi-Agent System Operates</h2>
+          <p class="section-desc">Designed specifically to satisfy B.Tech CSE AI Agent Development Lab requirements.</p>
+        </div>
+
+        <div class="workflow-diagram-card">
+          <div class="workflow-flow">
+            <div class="workflow-node user-node">
+              <i class="fa-solid fa-user"></i>
+              <strong>User Input</strong>
+              <span>Trip Parameters</span>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="workflow-node coord-node">
+              <i class="fa-solid fa-network-wired"></i>
+              <strong>Coordinator Agent</strong>
+              <span>Task Decomposition</span>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="workflow-subagents">
+              <div class="subagent-pill"><i class="fa-solid fa-map-pin"></i> Destination Agent</div>
+              <div class="subagent-pill"><i class="fa-solid fa-calendar-check"></i> Itinerary Agent</div>
+              <div class="subagent-pill"><i class="fa-solid fa-calculator"></i> Budget Agent</div>
+              <div class="subagent-pill"><i class="fa-solid fa-suitcase-rolling"></i> Essentials Agent</div>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="workflow-node output-node">
+              <i class="fa-solid fa-file-invoice"></i>
+              <strong>Synthesized Plan</strong>
+              <span>Validated Itinerary</span>
+            </div>
+          </div>
+
+          <div class="viva-qa-strip">
+            <div class="viva-qa-item">
+              <strong>Key Question: Why not just use a single prompt?</strong>
+              <p>A single prompt is monolithic and error-prone. Multi-agent architecture enforces <em>separation of concerns</em>, allows specialized domain logic for budget calculations, and enables modular LLM or offline execution.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <i class="fa-solid fa-compass"></i>
+        <span>Multi-Agent Travel Planner</span>
+      </div>
+      <p class="footer-note">
+        Developed for B.Tech CSE Final Year – AI Agent Development Laboratory Mini Project.
+      </p>
+      <div class="footer-meta">
+        <span>Flask 3.1 & Python 3.14</span> • <span>Modular AI Architecture</span> • <span>Offline-Ready Fallback Engine</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Script -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
